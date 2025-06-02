@@ -1,7 +1,9 @@
+import DateCounter from './DateCounter'
+
 const App = () => {
   return (
     <div>
-      <h1>App</h1>
+      <DateCounter />
     </div>
   )
 }
