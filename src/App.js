@@ -1,6 +1,8 @@
+import { useEffect, useReducer } from 'react'
 import Header from './Header'
 import Main from './Main'
-import { useEffect, useReducer } from 'react'
+import Loader from './Loader'
+import Error from './Error'
 
 const initialState = {
   questions: [],
@@ -22,7 +24,6 @@ const reducer = (state, action) => {
     case 'dataFailed':
       return {
         ...state,
-        error: action.payload,
         status: 'error'
       }
     default:
@@ -31,7 +32,8 @@ const reducer = (state, action) => {
 }
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [{ questions, status }, dispatch] = useReducer(reducer, initialState)
+
   useEffect(() => {
     const getQuestion = async () => {
       try {
@@ -50,8 +52,8 @@ const App = () => {
     <div className="app">
       <Header />
       <Main>
-        <p>1/15</p>
-        <p>Question?</p>
+        {status === 'loading' && <Loader />}
+        {status === 'error' && <Error />}
       </Main>
     </div>
   )
