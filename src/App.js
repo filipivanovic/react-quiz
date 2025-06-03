@@ -3,6 +3,7 @@ import Header from './Header'
 import Main from './Main'
 import Loader from './Loader'
 import Error from './Error'
+import StartScreen from './StartScreen'
 
 const initialState = {
   questions: [],
@@ -54,6 +55,7 @@ const App = () => {
       <Main>
         {status === 'loading' && <Loader />}
         {status === 'error' && <Error />}
+        {status === 'ready' && <StartScreen numOfQuestions={questions.length} />}
       </Main>
     </div>
   )
