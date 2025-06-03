@@ -1,7 +1,11 @@
-const Question = () => {
+import Options from './components/Options'
+
+const Question = ({ question }) => {
+  console.log(question)
   return (
     <div>
-      <h1>question</h1>
+      <h4>{question.question}</h4>
+      <Options question={question} />
     </div>
   )
 }

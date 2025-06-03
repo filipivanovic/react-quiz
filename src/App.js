@@ -8,11 +8,9 @@ import Question from './Question'
 
 const initialState = {
   questions: [],
-  // loading, error, ready, active, finished
-  status: 'loading',
-  currentQuestion: 0,
-  score: 0,
-  error: null
+
+  status: 'loading', // loading, error, ready, active, finished
+  index: 0
 }
 
 const reducer = (state, action) => {
@@ -39,7 +37,7 @@ const reducer = (state, action) => {
 }
 
 const App = () => {
-  const [{ questions, status }, dispatch] = useReducer(reducer, initialState)
+  const [{ questions, status, index }, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
     const getQuestion = async () => {
@@ -64,7 +62,7 @@ const App = () => {
         {status === 'ready' && (
           <StartScreen numOfQuestions={questions.length} dispatch={dispatch} />
         )}
-        {status === 'active' && <Question />}
+        {status === 'active' && <Question question={questions[index]} />}
       </Main>
     </div>
   )
