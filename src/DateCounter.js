@@ -1,8 +1,8 @@
 import { useReducer } from 'react'
 
-const reducer = (state, action) => {
-  console.log(state, action)
+const initialState = { count: 0, step: 1 }
 
+const reducer = (state, action) => {
   switch (action.type) {
     case 'dec':
       return {
@@ -24,13 +24,14 @@ const reducer = (state, action) => {
         ...state,
         step: action.payload
       }
+    case 'reset':
+      return initialState
     default:
       throw new Error(`Unknown action type: ${action.type}`)
   }
 }
 
 function DateCounter() {
-  const initialState = { count: 0, step: 1 }
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const { count, step } = state
@@ -55,7 +56,9 @@ function DateCounter() {
     dispatch({ type: 'setStep', payload: Number(e.target.value) })
   }
 
-  const reset = function () {}
+  const reset = function () {
+    dispatch({ type: 'reset' })
+  }
 
   return (
     <div className="counter">
