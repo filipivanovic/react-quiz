@@ -4,6 +4,7 @@ import Main from './Main'
 import Loader from './Loader'
 import Error from './Error'
 import StartScreen from './StartScreen'
+import Question from './Question'
 
 const initialState = {
   questions: [],
@@ -26,6 +27,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         status: 'error'
+      }
+    case 'start':
+      return {
+        ...state,
+        status: 'active'
       }
     default:
       throw new Error(`Unknown action type: ${action.type}`)
@@ -55,7 +61,10 @@ const App = () => {
       <Main>
         {status === 'loading' && <Loader />}
         {status === 'error' && <Error />}
-        {status === 'ready' && <StartScreen numOfQuestions={questions.length} />}
+        {status === 'ready' && (
+          <StartScreen numOfQuestions={questions.length} dispatch={dispatch} />
+        )}
+        {status === 'active' && <Question />}
       </Main>
     </div>
   )
