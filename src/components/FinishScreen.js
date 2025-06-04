@@ -1,4 +1,4 @@
-const FinishScreen = ({ maxPoints, points }) => {
+const FinishScreen = ({ maxPoints, points, highscore }) => {
   const percentage = (points / maxPoints) * 100
 
   let emoji
@@ -14,6 +14,7 @@ const FinishScreen = ({ maxPoints, points }) => {
         {percentage.toFixed(2)}
         %)
       </p>
+      <p className="highscore">(Highscore: {highscore} points)</p>
     </div>
   )
 }
