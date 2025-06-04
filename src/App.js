@@ -11,7 +11,8 @@ const initialState = {
 
   status: 'loading', // loading, error, ready, active, finished
   index: 0,
-  answer: null
+  answer: null,
+  points: 0
 }
 
 const reducer = (state, action) => {
@@ -33,9 +34,12 @@ const reducer = (state, action) => {
         status: 'active'
       }
     case 'newAnswer':
+      const question = state.questions[state.index]
       return {
         ...state,
-        answer: action.payload
+        answer: action.payload,
+        points:
+          action.payload === question.correctOption ? state.points + question.points : state.points
       }
     default:
       throw new Error(`Unknown action type: ${action.type}`)
@@ -43,7 +47,7 @@ const reducer = (state, action) => {
 }
 
 const App = () => {
-  const [{ questions, status, index, answer }, dispatch] = useReducer(reducer, initialState)
+  const [{ questions, status, index, answer, points }, dispatch] = useReducer(reducer, initialState)
   console.log(questions)
 
   useEffect(() => {
