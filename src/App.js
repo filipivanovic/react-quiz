@@ -95,7 +95,12 @@ const App = () => {
               answer={answer}
             />
             <Question question={questions[index]} dispatch={dispatch} answer={answer} />
-            <NextButton dispatch={dispatch} answer={answer} />
+            <NextButton
+              dispatch={dispatch}
+              answer={answer}
+              index={index}
+              numOfQuestions={questions.length}
+            />
           </>
         )}
         {status === 'finished' && <FinishScreen points={points} maxPoints={maxPoints} />}
