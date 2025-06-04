@@ -55,8 +55,11 @@ const reducer = (state, action) => {
 }
 
 const App = () => {
-  const [{ questions, status, index, answer }, dispatch] = useReducer(reducer, initialState)
+  const [{ questions, status, index, answer, points }, dispatch] = useReducer(reducer, initialState)
   console.log(questions)
+
+  const maxPoints = questions.reduce((acc, curr) => acc + curr.points, 0)
+  console.log(maxPoints)
 
   useEffect(() => {
     const getQuestion = async () => {
@@ -83,7 +86,13 @@ const App = () => {
         )}
         {status === 'active' && (
           <>
-            <Progress index={index} numOfQuestions={questions.length} />
+            <Progress
+              index={index}
+              numOfQuestions={questions.length}
+              points={points}
+              maxPoints={maxPoints}
+              answer={answer}
+            />
             <Question question={questions[index]} dispatch={dispatch} answer={answer} />
             <NextButton dispatch={dispatch} answer={answer} />
           </>
