@@ -63,7 +63,8 @@ const reducer = (state, action) => {
         index: 0,
         answer: null,
         points: 0,
-        status: 'active'
+        status: 'active',
+        highscore: 0
       }
     default:
       throw new Error(`Unknown action type: ${action.type}`)
