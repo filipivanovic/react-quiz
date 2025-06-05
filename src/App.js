@@ -57,6 +57,14 @@ const reducer = (state, action) => {
         status: 'finished',
         highscore: state.points > state.highscore ? state.points : state.highscore
       }
+    case 'restart':
+      return {
+        ...state,
+        index: 0,
+        answer: null,
+        points: 0,
+        status: 'active'
+      }
     default:
       throw new Error(`Unknown action type: ${action.type}`)
   }
@@ -114,7 +122,12 @@ const App = () => {
           </>
         )}
         {status === 'finished' && (
-          <FinishScreen points={points} maxPoints={maxPoints} highscore={highscore} />
+          <FinishScreen
+            points={points}
+            maxPoints={maxPoints}
+            dispatch={dispatch}
+            highscore={highscore}
+          />
         )}
       </Main>
     </div>

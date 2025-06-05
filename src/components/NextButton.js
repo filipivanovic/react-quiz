@@ -1,4 +1,5 @@
 const NextButton = ({ dispatch, answer, index, numOfQuestions }) => {
+  console.log(index, numOfQuestions)
   if (answer === null) return null
 
   if (index < numOfQuestions - 1)
@@ -12,6 +13,12 @@ const NextButton = ({ dispatch, answer, index, numOfQuestions }) => {
     return (
       <button className="btn btn-ui" onClick={() => dispatch({ type: 'finish' })}>
         Finish
+      </button>
+    )
+  if (!numOfQuestions)
+    return (
+      <button className="btn btn-ui" onClick={() => dispatch({ type: 'restart' })}>
+        Start Again
       </button>
     )
 }
