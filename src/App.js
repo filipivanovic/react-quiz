@@ -67,7 +67,8 @@ const reducer = (state, action) => {
         answer: null,
         points: 0,
         status: 'ready',
-        highscore: 0
+        highscore: 0,
+        secondsRemaining: 10
       }
     case 'tick':
       return {
