@@ -22,6 +22,8 @@ const initialState = {
   secondsRemaining: 10
 }
 
+const SECONDS_PRE_QUESTION = 30
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'dataReceived':
@@ -38,7 +40,8 @@ const reducer = (state, action) => {
     case 'start':
       return {
         ...state,
-        status: 'active'
+        status: 'active',
+        secondsRemaining: state.questions.length * SECONDS_PRE_QUESTION
       }
     case 'newAnswer':
       const question = state.questions[state.index]
