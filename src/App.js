@@ -63,7 +63,7 @@ const reducer = (state, action) => {
         index: 0,
         answer: null,
         points: 0,
-        status: 'active',
+        status: 'ready',
         highscore: 0
       }
     default:
