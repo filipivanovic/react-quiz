@@ -1,5 +1,4 @@
 const NextButton = ({ dispatch, answer, index, numOfQuestions }) => {
-  console.log(index, numOfQuestions)
   if (answer === null) return null
 
   if (index < numOfQuestions - 1)

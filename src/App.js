@@ -75,10 +75,8 @@ const App = () => {
     reducer,
     initialState
   )
-  console.log(questions)
 
   const maxPoints = questions.reduce((acc, curr) => acc + curr.points, 0)
-  console.log(maxPoints)
 
   useEffect(() => {
     const getQuestion = async () => {
